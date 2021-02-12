@@ -3,8 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators, NgForm, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { DogService, AlertService } from './../../_services';
-import { MustMatch } from './../../_helpers';
+import { DogService, AlertService } from '@app/_services';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -13,7 +12,8 @@ export class AddEditComponent implements OnInit {
   images = [];
   loading = false;
   submitted = false;
-  public response: { imgPaths: '' };
+  response: { imgPaths: '' };
+  imgPathsResponse: string[];
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -39,13 +39,20 @@ export class AddEditComponent implements OnInit {
     if (!this.isAddMode) {
       this.dogService.getById(this.id)
         .pipe(first())
-        .subscribe(x => this.form.patchValue(x));
+        .subscribe(x => {
+          this.form.patchValue(x)
+          this.imgPathsResponse = x.imgPaths;
+        });
     }
   }
 
   public uploadFinished = (event) => {
     this.response = event;
-    console.info(this.response);
+    this.imgPathsResponse = event.imgPaths;
+  }
+
+  public createImgPath = (serverPath: string) => {
+    return `http://localhost:4000/${serverPath}`;
   }
 
   // convenience getter for easy access to form fields
