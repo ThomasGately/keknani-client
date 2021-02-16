@@ -5,6 +5,11 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
         class="nav-item nav-link">Home</a>
       <a routerLink="/profile" routerLinkActive="active" class="nav-item nav-link">Profile</a>
+      <a routerLink="/temp" routerLinkActive="active" class="nav-item nav-link">About</a>
+      <a routerLink="/temp" routerLinkActive="active" class="nav-item nav-link">News</a>
+      <a routerLink="/temp" routerLinkActive="active" class="nav-item nav-link">Foster/Adopt</a>
+      <a routerLink="/temp" routerLinkActive="active" class="nav-item nav-link">Contact</a>
+      <a routerLink="/temp" routerLinkActive="active" class="nav-item nav-link">Donate</a>
       <a *ngIf="account.role === Role.Admin" routerLink="/admin" routerLinkActive="active"
         class="nav-item nav-link">Admin</a>
       <a (click)="logout()" class="nav-item nav-link">Logout</a>

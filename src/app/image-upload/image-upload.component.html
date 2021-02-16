@@ -1,14 +1,36 @@
-<div class="row" style="margin-bottom:15px;">
-  <div class="col-md-3">
-    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;" multiple>
-    <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+<div class="form-group" *ngIf="!imageChangedEvent;">
+  <div class="form-row">
+    <div class="col-md-3">
+      <input type="file" #profile placeholder="Choose file" (change)="fileChangeEvent($event)" style="display:none;">
+      <button type="button" class="btn btn-success" (click)="profile.click()">Add profile Image</button>
+    </div>
   </div>
-  <div class="col-md-4">
-    <span class="upload" *ngIf="progress > 0">
-      {{progress}}%
-    </span>
-    <span class="upload" *ngIf="message">
-      {{message}}
-    </span>
+</div>
+<div class="form-group" *ngIf="imageChangedEvent;">
+  <div class="form-row">
+    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+      [resizeToWidth]="256" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
+  </div>
+</div>
+<div class="form-group" *ngIf="croppedImage;">
+  <div class="form-row">
+    <img [src]="croppedImage" />
+  </div>
+</div>
+<div class="form-group">
+  <div class="form-row">
+    <div class="col-md-3">
+      <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;"
+        multiple>
+      <button type="button" class="btn btn-success" (click)="file.click()">Upload Images</button>
+    </div>
+    <div class="col-md-4">
+      <span class="upload" *ngIf="progress > 0">
+        {{progress}}%
+      </span>
+      <span class="upload" *ngIf="message">
+        {{message}}
+      </span>
+    </div>
   </div>
 </div>

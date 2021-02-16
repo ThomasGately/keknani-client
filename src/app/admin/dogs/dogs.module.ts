@@ -6,17 +6,19 @@ import { AccountsRoutingModule } from './dogs-routing.module';
 import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
 import { ImageUploadComponent } from '@app/image-upload/image-upload.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AccountsRoutingModule
+    AccountsRoutingModule,
+    ImageCropperModule
   ],
   declarations: [
     ListComponent,
     AddEditComponent,
-    ImageUploadComponent,
+    ImageUploadComponent
   ]
 })
 export class DogsModule { }

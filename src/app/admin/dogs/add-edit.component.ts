@@ -81,7 +81,7 @@ export class AddEditComponent implements OnInit {
   }
 
   private createDog() {
-    this.form.patchValue({ imgPaths: this.response.imgPaths });
+    this.form.patchValue({ imgPaths: this.imgPathsResponse });
     console.log(this.form.value);
 
     this.dogService.create(this.form.value)
